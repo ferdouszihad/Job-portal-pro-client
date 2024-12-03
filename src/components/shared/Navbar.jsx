@@ -1,12 +1,13 @@
+import { useContext } from "react";
 import { AiFillTwitch } from "react-icons/ai";
 import { FaHome, FaSuitcase } from "react-icons/fa";
 import { HiDocumentArrowUp, HiUserPlus } from "react-icons/hi2";
 import { IoBagAddSharp, IoLogIn } from "react-icons/io5";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Navbar = () => {
-  //   const user = { email: "sss" };
-  const user = null;
+  const { user, logOut } = useContext(AuthContext);
   const menu = (
     <>
       <li>
@@ -46,6 +47,10 @@ const Navbar = () => {
       )}
     </>
   );
+
+  const handleLogOut = () => {
+    logOut();
+  };
 
   return (
     <div className="navbar bg-base-100">
@@ -91,22 +96,24 @@ const Navbar = () => {
       <div className="navbar-end">
         {user && user?.email ? (
           <div className="flex gap-2 items-center">
-            <div>
+            <div className="rounded-full  border-2 border-green-400">
               <img
-                src="https://img.icons8.com/?size=100&id=7819&format=png"
-                alt=""
-                className="w-10 "
+                src={user?.photoURL}
+                alt={user?.displayName}
+                className="w-12 h-12 object-cover"
               />
             </div>
 
-            <button className="btn btn-neutral btn-sm">Logout</button>
+            <button onClick={handleLogOut} className="btn btn-neutral btn-sm">
+              Logout
+            </button>
           </div>
         ) : (
           <div className="space-x-2">
-            <Link className="btn btn-outline btn-neutral btn-sm">
+            <Link to="/login" className="btn btn-outline btn-neutral btn-sm">
               Login <IoLogIn size={20}></IoLogIn>
             </Link>
-            <Link className="btn btn-outline btn-neutral btn-sm">
+            <Link to="/register" className="btn btn-outline btn-neutral btn-sm">
               Register <HiUserPlus size={20}></HiUserPlus>
             </Link>
           </div>
