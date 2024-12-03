@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import App from "../App";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Home from "../pages/Home/Home";
 
 const router = createBrowserRouter([
   {
@@ -10,8 +11,8 @@ const router = createBrowserRouter([
     errorElement: <h2>Not Found</h2>,
     children: [
       {
-        path: "/jobs",
-        element: <h2>Jobs</h2>,
+        path: "",
+        element: <Home></Home>,
       },
       {
         path: "/add-jobs",
