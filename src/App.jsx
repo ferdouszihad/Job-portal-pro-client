@@ -16,7 +16,7 @@ function App() {
       <header className="md:w-11/12 mx-auto font-poppins">
         <Navbar></Navbar>
       </header>
-      <main className="min-h-[calc(100vh-283px)]">
+      <main className="min-h-[calc(100vh-283px)] font-poppins">
         <Outlet></Outlet>
       </main>
       <footer>
