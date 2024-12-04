@@ -3,6 +3,8 @@ import App from "../App";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Home from "../pages/Home/Home";
+import JobDetails from "../pages/JobDetails";
+import ApplicationForm from "../pages/ApplicationForm";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +15,19 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Home></Home>,
+        loader: () => fetch("http://localhost:5000/jobs"),
+      },
+      {
+        path: "/jobs/details/:id",
+        element: <JobDetails></JobDetails>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/jobs/details/${params.id}`),
+      },
+      {
+        path: "/apply/:id",
+        element: <ApplicationForm></ApplicationForm>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/jobs/details/${params.id}`),
       },
       {
         path: "/add-jobs",

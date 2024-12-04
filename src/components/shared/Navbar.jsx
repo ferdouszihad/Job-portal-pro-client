@@ -100,7 +100,7 @@ const Navbar = () => {
               <img
                 src={user?.photoURL}
                 alt={user?.displayName}
-                className="w-12 h-12 object-cover"
+                className="w-12 h-12 object-cover rounded-full"
               />
             </div>
 

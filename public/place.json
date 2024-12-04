@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Sundarbans",
+    "image": "https://i.ibb.co.com/0tWfLwq/Sundarban.jpg",
+    "title": "Sundarbans Mangrove Forest",
+    "description": "The Sundarbans, the largest mangrove forest in the world, is a UNESCO World Heritage site, home to the Bengal tiger and various wildlife."
+  },
+  {
+    "id": 2,
+    "name": "Cox's Bazar",
+    "image": "https://i.ibb.co.com/mBzpCMx/Rectangle-1.png",
+    "title": "Cox's Bazar Sea Beach",
+    "description": "Cox's Bazar boasts the longest unbroken sandy sea beach in the world, stretching over 120 kilometers, ideal for relaxation and adventure."
+  },
+  {
+    "id": 3,
+    "name": "Saint Martin's Island",
+    "image": "https://i.ibb.co.com/dJv0NgY/saint-martine.jpg",
+    "title": "Saint Martin's Coral Island",
+    "description": "A serene tropical paradise, Saint Martin's Island is Bangladesh's only coral island, known for its crystal-clear waters and coral reefs."
+  },
+  {
+    "id": 4,
+    "name": "Bandarban",
+    "image": "https://i.ibb.co.com/cDbVyZb/Bandarban.jpg",
+    "title": "Bandarban Hill Tracts",
+    "description": "Bandarban offers lush green hills, waterfalls, and the highest peaks in Bangladesh, making it a favorite for trekking and nature lovers."
+  },
+  {
+    "id": 5,
+    "name": "Rangamati",
+    "image": "https://i.ibb.co.com/LdpzcXB/Rangamati.webp",
+    "title": "Rangamati Lake City",
+    "description": "Known as the 'Lake City', Rangamati is famous for its stunning Kaptai Lake, traditional tribal culture, and lush greenery."
+  },
+  {
+    "id": 6,
+    "name": "Srimangal",
+    "image": "https://i.ibb.co.com/9wcPQ31/Sreemongol.png",
+    "title": "Srimangal Tea Capital",
+    "description": "Srimangal, the tea capital of Bangladesh, offers beautiful tea gardens, lush forests, and traditional Monipuri culture."
+  }
+]
