@@ -31,7 +31,7 @@ const Navbar = () => {
       )}
       {user && user.email && (
         <li>
-          <NavLink to="/Blogs">
+          <NavLink to="/my-application">
             <HiDocumentArrowUp size={20}></HiDocumentArrowUp>
             My Application
           </NavLink>
