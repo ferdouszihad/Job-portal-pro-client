@@ -1,10 +1,12 @@
 import { useContext } from "react";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const ApplicationForm = () => {
   const job = useLoaderData();
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   console.log(job);
   const {
@@ -46,10 +48,39 @@ const ApplicationForm = () => {
       location,
       jobType,
       category,
-      jobe_id: _id,
+      job_id: _id,
       salaryRange,
+      //new property
+      status: "on review",
+      submitted_at: new Date().toISOString(),
     };
-    console.log(applicationData);
+    fetch("http://localhost:5000/application", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(applicationData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            icon: "success",
+            title: "Thank you for Applying This Position",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/my-application");
+        } else if (data.message) {
+          Swal.fire({
+            icon: "error",
+            title: `${data.message}`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
 
   return (
