@@ -110,7 +110,7 @@ const JobDetail = () => {
         </div>
 
         {/* Apply Button */}
-        {today.getTime() > deadline.getTime() ? (
+        {today.getTime() <= deadline.getTime() ? (
           <div className="mt-6 ">
             <Link to={`/apply/${_id}`} className="btn btn-primary">
               Apply Now
