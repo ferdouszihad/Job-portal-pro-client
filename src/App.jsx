@@ -1,11 +1,13 @@
-import { Outlet } from "react-router";
+import { Outlet, useNavigation } from "react-router";
 import Footer from "./components/shared/Footer";
 import Navbar from "./components/shared/Navbar";
 import { useContext } from "react";
 import { AuthContext } from "./provider/AuthProvider";
+import Loading from "./pages/Loading";
 
 function App() {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigation();
   return (
     <>
       {user && user?.email && (
@@ -17,7 +19,7 @@ function App() {
         <Navbar></Navbar>
       </header>
       <main className="min-h-[calc(100vh-283px)] font-poppins">
-        <Outlet></Outlet>
+        {navigate.state == "loading" ? <Loading></Loading> : <Outlet></Outlet>}
       </main>
       <footer>
         <Footer></Footer>

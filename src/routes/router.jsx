@@ -17,7 +17,7 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/jobs"),
+        loader: () => fetch("https://job-portal-server-gules.vercel.app/jobs"),
       },
       {
         path: "/jobs/details/:id",
@@ -27,7 +27,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/jobs/details/${params.id}`),
+          fetch(
+            `https://job-portal-server-gules.vercel.app/jobs/details/${params.id}`
+          ),
       },
       {
         path: "/apply/:id",
@@ -37,7 +39,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/jobs/details/${params.id}`),
+          fetch(
+            `https://job-portal-server-gules.vercel.app/jobs/details/${params.id}`
+          ),
       },
       {
         path: "/my-application",

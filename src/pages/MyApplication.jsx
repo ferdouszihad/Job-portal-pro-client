@@ -9,14 +9,16 @@ const MyApplication = () => {
 
   //un optimize
   //   useEffect(() => {
-  //     fetch(`http://localhost:5000/application?email=${user?.email}`)
+  //     fetch(`https://job-portal-server-gules.vercel.app/application?email=${user?.email}`)
   //       .then((res) => res.json())
   //       .then((data) => setApplications(data));
   //   }, []);
 
   useEffect(() => {
     if (user && user?.email) {
-      fetch(`http://localhost:5000/application?email=${user?.email}`)
+      fetch(
+        `https://job-portal-server-gules.vercel.app/application?email=${user?.email}`
+      )
         .then((res) => res.json())
         .then((data) => setApplications(data));
     }
@@ -33,7 +35,7 @@ const MyApplication = () => {
       confirmButtonText: "Yes, WithDraw !",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/application/${id}`, {
+        fetch(`https://job-portal-server-gules.vercel.app/application/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

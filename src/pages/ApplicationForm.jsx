@@ -54,7 +54,7 @@ const ApplicationForm = () => {
       status: "on review",
       submitted_at: new Date().toISOString(),
     };
-    fetch("http://localhost:5000/application", {
+    fetch("https://job-portal-server-gules.vercel.app/application", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -65,13 +65,24 @@ const ApplicationForm = () => {
       .then((data) => {
         console.log(data);
         if (data.insertedId) {
-          Swal.fire({
-            icon: "success",
-            title: "Thank you for Applying This Position",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          navigate("/my-application");
+          fetch(
+            `https://job-portal-server-gules.vercel.app/jobs/increase/${_id}`,
+            {
+              method: "PATCH",
+            }
+          )
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              if (data.modifiedCount > 0)
+                Swal.fire({
+                  icon: "success",
+                  title: "Thank you for Applying This Position",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+              navigate("/my-application");
+            });
         } else if (data.message) {
           Swal.fire({
             icon: "error",
