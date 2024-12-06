@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import MyApplicationRow from "../components/MyApplicationRow";
+import Swal from "sweetalert2";
 
 const MyApplication = () => {
   const { user } = useContext(AuthContext);
@@ -20,6 +21,36 @@ const MyApplication = () => {
         .then((data) => setApplications(data));
     }
   }, [user]);
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you want to withdraw your Application?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, WithDraw !",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/application/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Application Removed!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+
+              setApplications(applications.filter((ap) => ap._id !== id));
+            }
+          });
+      }
+    });
+  };
   console.log(applications);
   return (
     <div>
@@ -46,6 +77,7 @@ const MyApplication = () => {
                 applyData={applyData}
                 key={applyData._id}
                 index={index}
+                handleDelete={handleDelete}
               ></MyApplicationRow>
             ))}
           </tbody>

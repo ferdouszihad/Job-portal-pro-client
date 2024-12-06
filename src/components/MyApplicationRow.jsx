@@ -1,27 +1,22 @@
 import { MdDeleteForever } from "react-icons/md";
 
-const MyApplicationRow = ({ applyData, index }) => {
+// eslint-disable-next-line react/prop-types
+const MyApplicationRow = ({ applyData, index, handleDelete }) => {
   const {
     _id,
-    candidate_name,
-    candidate_email,
-    candidate_photoURL,
-    portfolio,
-    resume,
-    linkedin,
-    whyShouldHire,
+
     title,
-    hr_email,
+
     hr_name,
-    hr_image,
+
     location,
     jobType,
-    category,
-    job_id,
+
     salaryRange,
     status,
     submitted_at,
   } = applyData || {};
+
   return (
     <tr className="hover">
       <th>{index + 1}</th>
@@ -52,6 +47,7 @@ const MyApplicationRow = ({ applyData, index }) => {
       <td>
         <MdDeleteForever
           cursor={"pointer"}
+          onClick={() => handleDelete(_id)}
           size={30}
           className="text-error"
         ></MdDeleteForever>
