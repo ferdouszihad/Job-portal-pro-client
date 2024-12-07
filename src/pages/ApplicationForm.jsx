@@ -7,6 +7,7 @@ const ApplicationForm = () => {
   const job = useLoaderData();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const today = new Date().toISOString().split("T")[0];
 
   console.log(job);
   const {
@@ -122,7 +123,7 @@ const ApplicationForm = () => {
           Apply For This Position
         </h2>
 
-        {new Date(applicationDeadline).getTime() <= new Date().getTime() ? (
+        {today > applicationDeadline ? (
           <p className="py-5 text-error">Application DeadLine is OVer</p>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-5 py-5">

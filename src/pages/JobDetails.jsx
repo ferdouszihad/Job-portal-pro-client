@@ -27,9 +27,7 @@ const JobDetail = () => {
     hr_image,
     applicants_count,
   } = job;
-  const today = new Date();
-  const deadline = new Date(applicationDeadline);
-  console.log(today, deadline);
+  const today = new Date().toISOString().split("T")[0];
 
   return (
     <div className="w-11/12 mx-auto p-6">
@@ -110,7 +108,7 @@ const JobDetail = () => {
         </div>
 
         {/* Apply Button */}
-        {today.getTime() <= deadline.getTime() ? (
+        {today <= applicationDeadline ? (
           <div className="mt-6 ">
             <Link to={`/apply/${_id}`} className="btn btn-primary">
               Apply Now

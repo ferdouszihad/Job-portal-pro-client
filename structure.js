@@ -14,12 +14,12 @@ export const sampleJob = {
   requirements: "Array<String> : minimum 3 , maximum 10",
   responsibilities: "Array<String> : minimum 3 , maximum 10",
   status: "default:active",
-  deadline: "Date",
+
   hr_email: "string", // Foreign-Key-> create relation with user
   hr_name: "string",
   hr_image: "photoURL",
+  applicants_count: 0,
 };
-
 
 export const sampleApplication = {
   //from  user
