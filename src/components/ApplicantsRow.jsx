@@ -16,7 +16,7 @@ const ApplicantsRow = ({ index, applicant, updateStatus }) => {
     status,
     submitted_at,
   } = applicant || {};
-  console.log(Object.keys(applicant).join(","));
+  //   console.log(Object.keys(applicant).join(","));
   return (
     <tr className="hover">
       <th>{index + 1}</th>

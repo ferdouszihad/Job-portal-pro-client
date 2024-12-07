@@ -9,7 +9,7 @@ const ApplicationForm = () => {
   const navigate = useNavigate();
   const today = new Date().toISOString().split("T")[0];
 
-  console.log(job);
+  // console.log(job);
   const {
     _id,
     title,
@@ -64,7 +64,7 @@ const ApplicationForm = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.insertedId) {
           fetch(
             `https://job-portal-server-gules.vercel.app/jobs/increase/${_id}`,
@@ -74,7 +74,7 @@ const ApplicationForm = () => {
           )
             .then((res) => res.json())
             .then((data) => {
-              console.log(data);
+              // console.log(data);
               if (data.modifiedCount > 0)
                 Swal.fire({
                   icon: "success",

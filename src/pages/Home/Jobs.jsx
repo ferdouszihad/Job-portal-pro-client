@@ -3,7 +3,7 @@ import JobCard from "../../components/shared/JobCard";
 
 const Jobs = () => {
   const data = useLoaderData();
-  console.log(data);
+  // console.log(data);
   return (
     <div>
       <h2 className="text-2xl font-bold text-center">Available Jobs</h2>
@@ -12,7 +12,7 @@ const Jobs = () => {
         {Array.isArray(data) &&
           data?.map((job) => <JobCard key={job._id} job={job}></JobCard>)}
       </div>
-    </div>  
+    </div>
   );
 };
 

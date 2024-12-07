@@ -38,7 +38,7 @@ const EditJobs = () => {
       hr_name: user?.displayName,
       hr_image: user?.photoURL,
     };
-    console.log(jobData);
+    // console.log(jobData);
     fetch(`https://job-portal-server-gules.vercel.app/jobs/${job?._id}`, {
       method: "PUT",
       headers: {

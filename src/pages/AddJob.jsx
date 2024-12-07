@@ -41,7 +41,7 @@ const AddJob = () => {
       hr_name: user?.displayName,
       hr_image: user?.photoURL,
     };
-    console.log(jobData);
+    // console.log(jobData);
     fetch("https://job-portal-server-gules.vercel.app/jobs", {
       method: "POST",
       headers: {
