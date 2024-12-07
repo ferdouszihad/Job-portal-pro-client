@@ -20,6 +20,7 @@ export const sampleJob = {
   hr_image: "photoURL",
 };
 
+
 export const sampleApplication = {
   //from  user
   candidate_name: "string",
@@ -48,5 +49,5 @@ export const sampleApplication = {
 
   //onSubmission
   status: "pending-review",
-  submitted_at:"CurrentDate in ISO string"
+  submitted_at: "CurrentDate in ISO string",
 };
