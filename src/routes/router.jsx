@@ -9,6 +9,8 @@ import PrivateRoute from "./PrivateRoute";
 import MyApplication from "../pages/MyApplication";
 import AddJob from "../pages/AddJob";
 import MyJobs from "../pages/MyJobs";
+import EditJobs from "../pages/EditJobs";
+import JobApplicants from "../pages/Home/JobApplicants";
 
 const router = createBrowserRouter([
   {
@@ -34,10 +36,34 @@ const router = createBrowserRouter([
           ),
       },
       {
+        path: "/jobs/edit/:id",
+        element: (
+          <PrivateRoute>
+            <EditJobs></EditJobs>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://job-portal-server-gules.vercel.app/jobs/details/${params.id}`
+          ),
+      },
+      {
         path: "/apply/:id",
         element: (
           <PrivateRoute>
             <ApplicationForm></ApplicationForm>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://job-portal-server-gules.vercel.app/jobs/details/${params.id}`
+          ),
+      },
+      {
+        path: "/my-jobs/applicants/:id",
+        element: (
+          <PrivateRoute>
+            <JobApplicants></JobApplicants>
           </PrivateRoute>
         ),
         loader: ({ params }) =>

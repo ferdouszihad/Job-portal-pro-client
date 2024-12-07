@@ -16,6 +16,7 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router";
 
+// eslint-disable-next-line react/prop-types
 const JobCard = ({ job }) => {
   const {
     _id,

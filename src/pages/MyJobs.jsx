@@ -71,8 +71,9 @@ const MyJobs = () => {
             </tr>
           </thead>
           <tbody>
-            {jobs.map((job) => (
+            {jobs.map((job, index) => (
               <MyJobsRow
+                index={index}
                 handleDelete={handleDelete}
                 job={job}
                 key={job._id}
