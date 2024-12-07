@@ -39,7 +39,7 @@ const Navbar = () => {
       )}
       {user && user.email && (
         <li>
-          <NavLink to="/Blogs">
+          <NavLink to="/my-jobs">
             <AiFillTwitch size={20}></AiFillTwitch>
             My Jobs
           </NavLink>
