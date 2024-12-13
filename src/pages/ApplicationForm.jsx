@@ -2,8 +2,10 @@ import { useContext } from "react";
 import { useLoaderData, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const ApplicationForm = () => {
+  const axiosSecure = useAxiosSecure();
   const job = useLoaderData();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -55,44 +57,28 @@ const ApplicationForm = () => {
       status: "on review",
       submitted_at: new Date().toISOString(),
     };
-    fetch("https://job-portal-server-gules.vercel.app/application", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(applicationData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        if (data.insertedId) {
-          fetch(
-            `https://job-portal-server-gules.vercel.app/jobs/increase/${_id}`,
-            {
-              method: "PATCH",
-            }
-          )
-            .then((res) => res.json())
-            .then((data) => {
-              // console.log(data);
-              if (data.modifiedCount > 0)
-                Swal.fire({
-                  icon: "success",
-                  title: "Thank you for Applying This Position",
-                  showConfirmButton: false,
-                  timer: 1500,
-                });
-              navigate("/my-application");
+
+    axiosSecure.post("/application", applicationData).then((res) => {
+      if (res.data.insertedId) {
+        axiosSecure.patch(`/jobs/increase/${_id}`).then((res) => {
+          if (res.data.modifiedCount > 0)
+            Swal.fire({
+              icon: "success",
+              title: "Thank you for Applying This Position",
+              showConfirmButton: false,
+              timer: 1500,
             });
-        } else if (data.message) {
-          Swal.fire({
-            icon: "error",
-            title: `${data.message}`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
+          navigate("/my-application");
+        });
+      } else if (res.data.message) {
+        Swal.fire({
+          icon: "error",
+          title: `${res.data.message}`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   };
 
   return (

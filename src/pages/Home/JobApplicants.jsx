@@ -13,7 +13,11 @@ const JobApplicants = () => {
   useEffect(() => {
     if (user) {
       fetch(
-        `https://job-portal-server-gules.vercel.app/application/jobs/${id}?email=${user?.email}`
+        `https://job-portal-server-gules.vercel.app/application/jobs/${id}?email=${user?.email}`,
+        {
+          method: "GET",
+          credentials:"include"
+        }
       )
         .then((res) => res.json())
         .then((data) => setApplicants(data));

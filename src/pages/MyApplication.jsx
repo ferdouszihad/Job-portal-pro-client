@@ -2,10 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import MyApplicationRow from "../components/MyApplicationRow";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const MyApplication = () => {
   const { user } = useContext(AuthContext);
   const [applications, setApplications] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   //un optimize
   //   useEffect(() => {
@@ -16,13 +18,17 @@ const MyApplication = () => {
 
   useEffect(() => {
     if (user && user?.email) {
-      fetch(
-        `https://job-portal-server-gules.vercel.app/application?email=${user?.email}`
-      )
-        .then((res) => res.json())
-        .then((data) => setApplications(data));
+      //   fetch(`https://job-portal-server-gules.vercel.app/application?email=${user?.email}`, {
+      //     method: "GET",
+      //     credentials: "include",
+      //   })
+      //     .then((res) => res.json())
+      //     .then((data) => setApplications(data));
+      axiosSecure.get(`/application?email=${user?.email}`).then((res) => {
+        setApplications(res.data);
+      });
     }
-  }, [user]);
+  }, [user, axiosSecure]);
 
   const handleDelete = (id) => {
     Swal.fire({

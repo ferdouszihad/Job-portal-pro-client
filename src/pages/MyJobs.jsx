@@ -2,8 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import MyJobsRow from "../components/MyJobsRow";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const MyJobs = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const [jobs, setJobs] = useState([]);
 
@@ -16,13 +18,11 @@ const MyJobs = () => {
 
   useEffect(() => {
     if (user && user?.email) {
-      fetch(
-        `https://job-portal-server-gules.vercel.app/jobs/user/${user?.email}`
-      )
-        .then((res) => res.json())
-        .then((data) => setJobs(data));
+      axiosSecure
+        .get(`/jobs/user/${user?.email}`)
+        .then(({ data }) => setJobs(data));
     }
-  }, [user]);
+  }, [user, axiosSecure]);
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you want to Remove Job Post?",

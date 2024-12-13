@@ -16,11 +16,11 @@ const Navbar = () => {
         </NavLink>
       </li>
 
-      <li>
+      {/* <li>
         <NavLink to="/jobs">
           <FaSuitcase size={20}></FaSuitcase> Jobs
         </NavLink>
-      </li>
+      </li> */}
       {user && user.email && (
         <li>
           <NavLink to="/add-jobs">

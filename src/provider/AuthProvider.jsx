@@ -10,6 +10,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+import axios from "axios";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext();
@@ -60,6 +61,28 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
+
+      if (currentUser?.email) {
+        axios
+          .post(
+            "https://job-portal-server-gules.vercel.app/jwt",
+            { user: currentUser.email },
+            { withCredentials: true }
+          )
+          .then((res) => {
+            console.log(res.data);
+          });
+      } else {
+        axios
+          .post(
+            "https://job-portal-server-gules.vercel.app/logout",
+            {},
+            { withCredentials: true }
+          )
+          .then((res) => {
+            console.log(res.data);
+          });
+      }
     });
     return () => {
       unsubscribe();

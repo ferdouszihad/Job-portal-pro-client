@@ -4,9 +4,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AddJob = () => {
   const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
   const [startDate, setStartDate] = useState(new Date());
   // console.log(startDate);
   const navigate = useNavigate();
@@ -42,20 +44,14 @@ const AddJob = () => {
       hr_image: user?.photoURL,
     };
     // console.log(jobData);
-    fetch("https://job-portal-server-gules.vercel.app/jobs", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(jobData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
-          Swal.fire("Thank you", "Your Job Has been Posted", "success");
-          navigate("/");
-        }
-      });
+    axiosSecure.post("/jobs", jobData).then((res) => {
+      const { data } = res;
+      console.log(data);
+      if (data.insertedId) {
+        Swal.fire("Thank you", "Your Job Has been Posted", "success");
+        navigate("/");
+      }
+    });
   };
   return (
     <div>
