@@ -150,3 +150,36 @@ npm run build
 ```
 
 Now Drop your Dist Folder to Netlify
+
+# Deployment Steps on SURGE
+
+### Deployment Steps-1 : Create CNAME on Public
+
+Add Your Domain like this --> yourdomain.surge.sh
+
+### Deployment Steps-2 : Build your Project
+
+```bash
+npm run build
+```
+
+### Deployment Steps-3 : Set up 200.html on Dist
+
+- copy code from your [dist/index.html]("/dist/index.html")
+- create new file 200.html on dist and paste code of index.html
+
+run this command
+
+```bash
+surge dist
+```
+
+It will deploy automatically
+
+### Deployment Steps-4 : Add Domain on Firebase for Auth Authorization
+
+## YAHOO 😎 Deployment Done
+
+## Redeploy System
+
+Do Steps 2,3,4
